@@ -1,0 +1,294 @@
+:root {
+    --primario: #9c27b0;
+    --primarioOscuro: #88119d;
+    --secundario: #ffce00;
+    --secundarioOscuro: #FBB100;
+    --blanco: #fff;
+    --negro: #1f1e1e;
+    --grisClaro: #e1e1e1;
+
+    --fuentePrincipal: 'Staatliches', cursive;
+    --fuenteSecundaria: 'Short Stack', cursive;
+    --fuente: Arial, Helvetica, sans-serif;
+
+    --separacion: 5rem; 
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*, *:before, *:before {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--fuentePrincipal);
+    font-size: 1.6rem;
+    line-height: 1.5;   /* el interlineado puede o no llevar unidades, es la base de la fuente */
+    background-color: var(--primario);
+}
+
+/*----------------------------------------------------------------------------------------------------------- Globales */
+.contenedor {
+    max-width: 120rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+h1, h2, h3 {
+    font-family: var(--fuentePrincipal);
+    margin: calc( var(--separacion) / 2 ) 0;
+    color: var(--secundario);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 4rem;
+}
+h2 {
+    font-size: 3.2rem;
+}
+h3 {
+    font-size: 2.4rem;
+}
+
+p {
+    font-size: 1.8rem;
+    font-family: var(--fuente);
+    color: var(--blanco);
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+    margin: 0 auto;
+}  /* Hasta aqui es lo que se agrega en todos los proyectos */
+
+/*------------------------------------------------------------------------------------------------------------- header */
+.header {
+    display: flex;
+    justify-content: center;
+}
+.header__logo {
+    margin: var(--separacion) 0;
+}
+
+/* Navegacion */
+.navegacion {
+    display: flex;
+    justify-content: center;
+    /* gap: var(--separacion);  esta es la forma nueva de separa dos elementos pero en algunos navegadores no funcionan */
+    background-color: var(--primario);
+    padding: 1rem 0;
+}
+.navegacion__enlace {
+    font-family: var(--fuenteSecundaria);
+    color: var(--blanco);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2rem;
+
+    /* padding a los enlaces para separar los elementos y dar soporte a todos los navegadores  */
+    margin-right: var(--separacion); /* pero ahora tenemos que quitarle al ultimo elemento */
+}
+.navegacion__enlace:last-of-type {
+    margin-right: 0;
+}
+
+.navegacion__enlace--activo,
+.navegacion__enlace:hover {
+    color: var(--secundarioOscuro);
+}
+
+/*------------------------------------------------------------------------------------------------------ card producto */
+/*  Mayoría de teléfonos móviles (vertical y horizontal) */
+@media (min-width: 320px) and (max-width: 480px) {
+    .productos__grid {
+        display: grid;
+        grid-template-columns: 100%;
+        gap: 2rem;
+    }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+    .productos__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }  
+}
+
+@media (min-width: 768px) {
+    .productos__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }  
+}
+.producto {
+    background-color: var(--primarioOscuro);
+    padding: 1rem;
+}
+.producto__imagen {
+    width: 100%;
+}
+.producto__info {
+    border: thin solid var(--primario);
+}
+.producto__nombre, .producto__precio {
+    text-align: center;
+    font-family: var(--fuentePrincipal);
+    margin: 1rem 0;
+}
+.producto__nombre {
+    font-size: 3.2rem;
+}
+.producto__precio {
+    font-size: 2.8rem;
+    color: var(--secundario);
+}
+
+.grafico {
+    min-height: 30rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    grid-column: 1/3;
+}
+.grafico--camisa {
+    grid-row: 2/3;
+    background-image: url(../img/grafico1.jpg);
+}
+.grafico--node {
+    grid-row: 8/9;
+    background-image: url(../img/grafico2.jpg);
+}
+@media (min-width: 768px) {
+    .grafico--node {
+        grid-row: 5/6;
+        grid-column: 2/4;   
+    }   
+}
+
+
+/*---------------------------------------------------------------------------------------------------------------- footer */
+.footer {
+    background-color: var(--primarioOscuro);
+    margin-top: 2rem;
+    padding: 1rem 0;
+}
+.footer__texto {
+    font-family: var(--fuentePrincipal);
+    text-align: center;
+    font-size: 2rem;
+    word-spacing: .5rem;
+}
+
+/*------------------------------------------------------------------------------------------------------ Sobre Nosotros */
+.nosotros__grid {
+    background-color: var(--primarioOscuro);
+    padding: 1rem;
+}
+.nosotros {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    row-gap: 2rem;
+}
+.nosotros__imagen {
+    grid-row: 1/2;
+    width: 100%;
+}
+
+/*----------------------------------------------------------------------------------------------------- Comprar con nosotros */
+.nosotros__iconos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+.nosotros__bloque {
+    border: thin solid var(--primario);
+}
+.nosotros__bloque > p {
+    padding: 0 2rem;
+    text-align: center;
+}
+@media (min-width: 768px) {
+    .nosotros {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
+    .nosotros__imagen {
+        grid-column: 2/3;
+    }    
+    .nosotros__iconos {
+        display: flex;
+        column-gap: 2rem;
+    }  
+}
+
+/*-------------------------------------------------------------------------------------------- producto */
+.camisa__contenido {
+    padding: 2rem;
+}
+@media (min-width: 768px) {
+    .camisa {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    } 
+}
+.formulario {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+.formulario__campo {
+    border: 1rem solid var(--primarioOscuro);
+    max-width: 100%;
+    outline: none;
+    background-color: transparent;
+    color: var(--blanco);
+    font-size: normal;
+    padding: 1rem;
+    font-family: var(--fuenteSecundaria);
+    appearance: none;
+    width: 100%;
+    cursor: pointer;
+}
+/* Hide arrow icon in IE browsers */
+.formulario__campo::-ms-expand {
+	display: none;
+}
+
+.formulario__campo::-webkit-input-placeholder { color: var(--blanco); }
+.formulario__campo::-moz-placeholder { color: var(--blanco); }
+.formulario__campo:-moz-placeholder { color: var(--blanco); }
+.formulario__campo:-ms-input-placeholder{ color: var(--blanco); }
+.formulario__campo:focus::-webkit-input-placeholder { color: transparent; }
+.formulario__campo::placeholder { color: var(--blanco);}
+
+.formulario__campo > option {
+    background-color: var(--negro);
+    font-weight: normal;
+}
+
+.formulario__submit {
+    background-color: var(--secundario);
+    border: none;
+    outline: none;
+    font-family: var(--fuenteSecundaria);
+    font-size: 2rem;
+    padding: 2rem;
+    text-transform: uppercase;
+    transition: background-color .3s ease;
+
+    grid-column: 1/3;
+} 
+.formulario__submit:hover {
+    background-color: var(--secundarioOscuro);
+}
